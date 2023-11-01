@@ -1,6 +1,7 @@
 <?php
     require_once 'config.php';
     require_once 'libs/router.php';
+    require_once 'app/controller/libroApiController.php';
 
     $router = new Router();
 
@@ -8,10 +9,9 @@
     //Libros
     $router->addRoute('libros',     'GET',    'LibroApiController', 'get'   );
 
-    // //hacer
     // $router->addRoute('libro',     'POST',   'LibroApiController', 'create');
-    // //hacer
-    // $router->addRoute('libro/:ID', 'GET',    'LibroApiController', 'get'   );
+
+    $router->addRoute('libro/:ID', 'GET',    'LibroApiController', 'get'   );
     // //hacer
     // $router->addRoute('libro/:ID', 'PUT',    'LibroApiController', 'update');
     // //hacer
