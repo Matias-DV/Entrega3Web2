@@ -9,28 +9,13 @@
     //Libros
     $router->addRoute('libros',     'GET',    'LibroApiController', 'get'   );
 
-    // $router->addRoute('libro',     'POST',   'LibroApiController', 'create');
+    $router->addRoute('libros',     'POST',   'LibroApiController', 'create');
 
-    $router->addRoute('libro/:ID', 'GET',    'LibroApiController', 'get'   );
-    // //hacer
-    // $router->addRoute('libro/:ID', 'PUT',    'LibroApiController', 'update');
-    // //hacer
-    // $router->addRoute('libro/:ID', 'DELETE', 'LibroApiController', 'delete');
-
-    // //Autores
-    // //hacer
-    // $router->addRoute('autor',     'GET',    'AutorApiController', 'get'   );
-    // //hacer
-    // $router->addRoute('autor',     'POST',   'AutorApiController', 'create');
-    // //hacer
-    // $router->addRoute('autor/:ID', 'GET',    'AutorApiController', 'get'   );
-    // //hacer
-    // $router->addRoute('autor/:ID', 'PUT',    'AutorApiController', 'update');
-    // //hacer
-    // $router->addRoute('autor/:ID', 'DELETE', 'AutorApiController', 'delete');
+    $router->addRoute('libros/:ID', 'GET',    'LibroApiController', 'get'   );
     
-    //acomodar la guia para orden 
-    //$router->addRoute('tareas/:ID/:subrecurso', 'GET',    'TaskApiController', 'get'   );
+    $router->addRoute('libros/:ID', 'PUT',    'LibroApiController', 'update');
+
+    $router->addRoute('libros/:ID', 'DELETE', 'LibroApiController', 'delete');
     
 
     $router->route($_GET['resource'], $_SERVER['REQUEST_METHOD']);

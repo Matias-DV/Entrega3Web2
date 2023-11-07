@@ -12,6 +12,7 @@
                 201 => "Created",
                 404 => "Not found",
                 500 => "Internal server error",
+                400 => "Bad request",
             );
             return (isset($status[$code])) ? $status[$code] : $status[500];
         }
