@@ -5,8 +5,6 @@
 
     $router = new Router();
 
-    #                 endpoint      verbo     controller           método
-    //Libros
     $router->addRoute('libros',     'GET',    'LibroApiController', 'get'   );
 
     $router->addRoute('libros',     'POST',   'LibroApiController', 'create');
