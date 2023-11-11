@@ -10,6 +10,12 @@ class LibroModel extends Model {
         $result = $query->fetchAll(PDO::FETCH_OBJ);
         return $result;
     }
+    public function getLibrosPaginacion($sort,$order, $calculoPagina, $limitPage){
+        $query = $this->db->prepare("SELECT * FROM libros ORDER BY $sort $order LIMIT $limitPage OFFSET $calculoPagina ");
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_OBJ);
+        return $result;
+    }
     public function getLibro($id){
         $query = $this->db->prepare("SELECT * FROM Libros WHERE ID = ?");
         $query->execute([$id]);

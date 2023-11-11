@@ -16,6 +16,5 @@
     $router->addRoute('libros/:ID', 'PUT',    'LibroApiController', 'update');
 
     $router->addRoute('libros/:ID', 'DELETE', 'LibroApiController', 'delete');
-    
 
     $router->route($_GET['resource'], $_SERVER['REQUEST_METHOD']);

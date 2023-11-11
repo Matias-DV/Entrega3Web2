@@ -16,8 +16,11 @@
         function get($params = []) {
             //if donde no viene con parametros
             if (empty($params)){
-                $sort = "ID";
-                $order = "ASC";
+                $sort = "ID"; //Sort por default
+                $order = "ASC"; //Order por default
+                $limitPage = 2; //Limite por default de libros por pagina
+                $page = 1; //Pagina por default
+                
                 if(isset($_GET['sort'])){
                     if($_GET['sort']=='ID'||$_GET['sort']=='Nombre'||$_GET['sort']=='Genero'||$_GET['sort']=='Autor'||$_GET['sort']=='Editorial'){
                         $sort = $_GET['sort'];
@@ -31,8 +34,27 @@
                     }else{
                         $this->view->response("No se puede ordenar de manera " . $_GET['order'], 400);
                     }
-                }   
-                $libros = $this->model->getLibros($sort,$order);
+                }
+                if(isset($_GET['limit']) || isset($_GET['page'])){
+                    if(isset($_GET['limit'])){
+                        if (($_GET['limit'] > 0)){
+                            $limitPage = intval($_GET['limit']);
+                        }else{
+                            $this->view->response("El limite no puede ser " . $_GET['limit'], 400);
+                        }
+                    }
+                    if(isset($_GET['page'])){
+                        if (($_GET['page'] > 0)){
+                            $page = intval($_GET['page']);
+                        }else{
+                            $this->view->response("El numero de la pagina no puede ser " . $_GET['order'], 400);
+                        }
+                    }
+                    $calculoPagina = ($page - 1) * $limitPage; //Formula el cual calcula la cantidad de paginas que salteara
+                    $libros = $this->model->getLibrosPaginacion($sort,$order, $calculoPagina, $limitPage);
+                }else{
+                    $libros = $this->model->getLibros($sort,$order);
+                }
                 $this->view->response($libros, 200);
             }  
             //else donde si viene con un parametro ID
