@@ -65,7 +65,7 @@ Aclaracion : los ejemplos de los endpoints pueden que no sean exactamentes igual
 -( 3er Opcional ) : Si el consumidor lo desea puede filtrar los libros pasando la columna a filtrar y el valor deseado, las columnas que se pueden filtrar son Nombre, Genero, Autor y Editorial.
 
 -Ejemplo del Opcional 3:
-http://localhost/tudai/parte3/api/libros?Genero=Autoayuda
+http://localhost/tudai/parte3/api/libros?Genero=Autoayuda&&Autor=3
 
 
 #### Obtener un libro (GET)
