@@ -20,7 +20,24 @@
                 $order = "ASC"; //Order por default
                 $limitPage = 2; //Limite por default de libros por pagina
                 $page = 1; //Pagina por default
-                
+                $queryFiltro = "";
+                $filtros = [];
+                if(isset($_GET['Nombre'])){
+                    $queryFiltro = $queryFiltro . "AND Nombre = ? ";
+                    array_push($filtros, $_GET['Nombre']);
+                }
+                if(isset($_GET['Genero'])){
+                    $queryFiltro = $queryFiltro . "AND Genero = ? ";
+                    array_push($filtros, $_GET['Genero']);
+                }
+                if(isset($_GET['Autor'])){
+                    $queryFiltro = $queryFiltro . "AND Autor = ? ";
+                    array_push($filtros, $_GET['Autor']);
+                }
+                if(isset($_GET['Editorial'])){
+                    $queryFiltro = $queryFiltro . "AND Editorial = ? ";
+                    array_push($filtros, $_GET['Editorial']);
+                }
                 if(isset($_GET['sort'])){
                     if($_GET['sort']=='ID'||$_GET['sort']=='Nombre'||$_GET['sort']=='Genero'||$_GET['sort']=='Autor'||$_GET['sort']=='Editorial'){
                         $sort = $_GET['sort'];
@@ -51,9 +68,9 @@
                         }
                     }
                     $calculoPagina = ($page - 1) * $limitPage; //Formula el cual calcula la cantidad de paginas que salteara
-                    $libros = $this->model->getLibrosPaginacion($sort,$order, $calculoPagina, $limitPage);
+                    $libros = $this->model->getLibrosPaginacion($queryFiltro, $filtros, $sort,$order, $calculoPagina, $limitPage);
                 }else{
-                    $libros = $this->model->getLibros($sort,$order);
+                    $libros = $this->model->getLibros($queryFiltro, $filtros, $sort,$order);
                 }
                 $this->view->response($libros, 200);
             }  

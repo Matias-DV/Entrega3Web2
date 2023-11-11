@@ -4,15 +4,15 @@ class LibroModel extends Model {
     public function __construct() {
         parent::__construct();
     }
-    public function getLibros($sort,$order){
-        $query = $this->db->prepare("SELECT * FROM Libros ORDER BY " . $sort . " " . $order);
-        $query->execute();
+    public function getLibros($queryFiltro, $filtros, $sort,$order){
+        $query = $this->db->prepare("SELECT * FROM Libros WHERE 1 $queryFiltro ORDER BY $sort $order");
+        $query->execute($filtros);
         $result = $query->fetchAll(PDO::FETCH_OBJ);
         return $result;
     }
-    public function getLibrosPaginacion($sort,$order, $calculoPagina, $limitPage){
-        $query = $this->db->prepare("SELECT * FROM libros ORDER BY $sort $order LIMIT $limitPage OFFSET $calculoPagina ");
-        $query->execute();
+    public function getLibrosPaginacion($queryFiltro, $filtros, $sort,$order, $calculoPagina, $limitPage){
+        $query = $this->db->prepare("SELECT * FROM libros WHERE 1 $queryFiltro ORDER BY $sort $order LIMIT $limitPage OFFSET $calculoPagina ");
+        $query->execute($filtros);
         $result = $query->fetchAll(PDO::FETCH_OBJ);
         return $result;
     }
